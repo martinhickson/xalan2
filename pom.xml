@@ -14,7 +14,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>3.2.1</version> <!-- Or the latest version -->
+        <version>3.6.0</version> <!-- Or the latest version -->
         <executions>
           <execution>
             <phase>package</phase>
@@ -22,6 +22,8 @@
               <goal>shade</goal>
             </goals>
             <configuration>
+              <createSourcesJar>true</createSourcesJar>
+              <shadeSourcesContent>true</shadeSourcesContent>
               <artifactSet>
                 <includes>
                   <include>xalan:xalan</include>
