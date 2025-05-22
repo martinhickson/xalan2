@@ -1,5 +1,9 @@
 name: Build & Release
 
+permissions:
+  contents: read
+  packages: write
+
 on:
   workflow_dispatch:
     inputs:
@@ -49,5 +53,5 @@ jobs:
         if [ "${{ github.event.inputs.dry_run }}" == "true" ]; then
           echo "Dry run: mvn -B deploy:deploy-DrepositoryId=github -Durl=https://maven.pkg.github.com/${{ github.repository }} -DskipTests"
         else
-          mvn -B deploy:deploy -DrepositoryId=github -Durl=https://maven.pkg.github.com/${{ github.repository }} -DskipTests
+          mvn -B -ntp package deploy -DskipTests=true -DdeployAtEnd=true
         fi
